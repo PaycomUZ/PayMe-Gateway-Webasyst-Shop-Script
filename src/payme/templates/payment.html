@@ -1,0 +1,21 @@
+Номер заказа для платежной системы {$order_id}
+
+<form id="payment-form" action="{$form_url}" method="POST" target="_top">
+
+    {foreach $hidden_fields as $name => $value}
+        <input type="hidden" name="{$name}" value="{$value|escape}"> 
+    {/foreach}
+	
+    {if $auto_submit}
+    <i class="icon16 loading"></i> <em>Перенаправление на сайт Payme для оплаты...</em> 
+    <script type="text/javascript">
+    setTimeout(function () {
+        document.getElementById('payment-form').submit();
+    }, 3000);
+    </script>
+    {/if}
+	
+    <input type="submit" value="Оплатить заказ на сайте Payme">
+</form>
+
+
