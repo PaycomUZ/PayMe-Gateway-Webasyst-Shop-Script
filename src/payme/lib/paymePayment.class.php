@@ -69,7 +69,7 @@ class paymePayment extends waPayment {
 				// Request ID
 				if (!empty($this->inputArray['id']) ) {
 
-					$this->request_id=$this->inputArray['id'];
+					$this->request_id = filter_var($this->inputArray['id'], FILTER_SANITIZE_NUMBER_INT);
 				}
 
 					 if ($_SERVER['REQUEST_METHOD']!='POST') $this->setErrorCod(-32300);
