@@ -28,9 +28,9 @@ class paymePayment extends waPayment {
 			'account[order_id]'  => sprintf('%s.%s_%s', $this->app_id, $this->merchant_id, $order->id),
             'amount'      => $order->total*100,
             'currency'    => $this->allowedCurrencyCod($order->currency),
-            'description' => $order->description, 
-            'server_url'  => $this->getRelayUrl(),
-            'result_url'  => $this->getAdapter()->getBackUrl(waAppPayment::URL_SUCCESS, array('order_id' => $order->id)),
+            'description' => $order->description,
+			'callback_timeout' => $this->return_after_payment,
+            'callback'  => $this->getAdapter()->getBackUrl(waAppPayment::URL_SUCCESS),
         );
 
 		if ($this->test_mode) $form_url=$this->checkout_url_test; else $form_url=$this->checkout_url;
